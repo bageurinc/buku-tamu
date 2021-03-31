@@ -18,11 +18,11 @@ class BukuTamuController extends Controller
     public function store(Request $request)
     {
         $rules    = [
-            'nama'     => 'required',
+            'nama'      => 'required',
             'nomor'     => 'required',
             'email'     => 'required',
             'pesan'     => 'required',
-            'captcha' => 'required|captcha'
+            'captcha'   => 'required|captcha_api:'. request('key') . ',flat'
         ];
 
         $messages = [
@@ -80,5 +80,4 @@ class BukuTamuController extends Controller
           $delete->delete();
           return response(['status' => true ,'text'    => 'has deleted'], 200);
     }
-
 }
